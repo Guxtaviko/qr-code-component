@@ -16,6 +16,13 @@
     --color-dark-blue: hsl(218, 44%, 22%);
 }
 
+:root:has(.theme__switcher input:checked) {
+    --color-white: #212121;
+    --color-light-gray: #494949;
+    --color-grayish-blue: hsl(220, 15%, 75%);
+    --color-dark-blue: hsl(0, 0%, 100%);
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -24,6 +31,8 @@ body {
 
     background: var(--color-light-gray);
     font-family: 'Outfit', sans-serif;
+
+    transition: all 400ms ease;
 }
 
 div {
@@ -31,20 +40,69 @@ div {
 }
 
 p {
-    font-size: 15px;
+    font-size: 0.9rem;
     color: var(--color-grayish-blue);
     text-align: center;
 }
 
+.theme__switcher {
+    position: absolute;
+    top: 5vmin;
+    right: 5vmin;
+    transform: translate(50%, -50%);
+}
+
+.theme__switcher label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.theme__switcher input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.theme__switcher span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-white);
+    transition: all 400ms ease;
+    display: grid;
+    place-items: center;
+    color: var(--color-dark-blue);
+}
+
+.theme__switcher:hover span {
+    background: var(--color-grayish-blue);
+    color: var(--color-white);
+}
+
 .card {
-    background: var(--color-white);
-    padding: 1rem;
     width: 90%;
     max-width: 325px;
+}
+
+.card__container {
+    background: var(--color-white);
+    padding: 1rem;
+    width: 100%;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+:root:has(.theme__switcher input:checked) .card__img img {
+    filter: hue-rotate(24deg);
 }
 
 .card__img img {
@@ -75,7 +133,7 @@ footer {
 }
 
 footer a {
-    transition: all ease 400ms;
+    transition: all 400ms ease;
     color: var(--color-dark-blue);
 }
 
